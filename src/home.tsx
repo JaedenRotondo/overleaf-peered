@@ -4,8 +4,16 @@ import { nanoid } from 'nanoid';
 export default function Home() {
   const navigate = useNavigate();
 
-  function createNewDoc() {
+  async function createNewDoc() {
     const newRoomId = nanoid();
+
+    // Notify ghost node (fire-and-forget)
+    fetch("http://localhost:8080/register-room", {
+      method: "POST",
+      body: JSON.stringify({ roomId: newRoomId }),
+      headers: { "Content-Type": "application/json" }
+    }).catch(() => { /* Optionally handle failure */ });
+
     navigate(`/doc/${newRoomId}`);
   }
 

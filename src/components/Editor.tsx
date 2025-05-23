@@ -19,7 +19,7 @@ const editorRef = useRef<HTMLDivElement | null>(null);
   const ytext = ydocRef.current.getText('codemirror');
 
   providerRef.current = new WebrtcProvider(roomId!, ydocRef.current, {
-    signaling: ['wss://thumbzilla-college-arnold-brazilian.trycloudflare.com '],
+    signaling: ['wss://localhost:4444'],
   });
 
   if (!editorRef.current) return;
